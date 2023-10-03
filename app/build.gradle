@@ -4,11 +4,11 @@ plugins {
     id 'kotlin-kapt'
 }
 
-
-
 android {
     namespace 'com.example.time_late'
     compileSdk 32
+
+
 
     defaultConfig {
         applicationId "com.example.time_late"
@@ -33,10 +33,12 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    dataBinding{
-        enabled = true
+    buildFeatures {
+        dataBinding = true
     }
 }
+
+
 
 dependencies {
 
@@ -47,6 +49,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.7.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.7.3'
     kapt "com.android.databinding:compiler:3.1.4"
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
     implementation 'androidx.fragment:fragment-ktx:1.6.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.2'
