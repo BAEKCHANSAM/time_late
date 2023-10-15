@@ -1,4 +1,5 @@
-//package com.osl.swrnd.aos.views.base
+//package com.example.time_late.views.base
+//
 //
 //import android.annotation.SuppressLint
 //import android.os.Build
@@ -18,11 +19,6 @@
 //import androidx.navigation.NavBackStackEntry
 //import androidx.navigation.NavDirections
 //import androidx.navigation.fragment.findNavController
-//import com.osl.swrnd.UdpServer
-//import com.osl.swrnd.aos.App
-//import com.osl.swrnd.aos.R
-//import com.osl.swrnd.aos.common.*
-//import com.osl.swrnd.common.d
 //
 //@Suppress("MemberVisibilityCanBePrivate", "RedundantOverride")
 //abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel> : Fragment() {
@@ -31,27 +27,6 @@
 //    protected lateinit var actViewModel: BaseViewModel
 //    protected open val needSpaceBottomNavigation = false
 //    protected val viewModel: VM get() = ui.viewModel
-//
-//    protected val udpServer
-//            by lazy { provideUdpServer() }
-//
-//    // TODO for bottom navigation [
-////  private val bottomMenus = arrayListOf<Int>(
-////    R.id.MainFragment,
-////    R.id.RecipeFragment,
-////    R.id.ShoppingFragment,
-////    R.id.SaladBarFragment,
-////    R.id.MyPageFragment
-////  )
-////
-////  private val bottomMenuButtons = arrayListOf<Int>(
-////    R.id.tvBtnBottomMenuHome,
-////    R.id.tvBtnBottomMenuRecipe,
-////    R.id.tvBtnBottomMenuShopping,
-////    R.id.tvBtnBottomMenuSaladBar,
-////    R.id.tvBtnBottomMenuMyPage
-////  )
-//    // TODO for bottom navigation ]
 //
 //    private val onGlobalLayoutListener = ViewTreeObserver.OnGlobalLayoutListener {
 //        ui.setNavigationBarSafeArea(ui.viewDataBinding.root, activity)
@@ -73,16 +48,6 @@
 //
 //        ui.viewDataBinding.lifecycleOwner = viewLifecycleOwner
 //
-//        // TODO for bottom navigation [
-////    ui.viewDataBinding.root.findViewById<View>(R.id.clBottomMenu)?.apply {
-////      postponeEnterTransition()
-////      viewTreeObserver.addOnPreDrawListener {
-////        startPostponedEnterTransition()
-////        true
-////      }
-////    }
-//        // TODO for bottom navigation ]
-//
 //        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner,
 //            object : OnBackPressedCallback(true) {
 //                override fun handleOnBackPressed() {
@@ -92,28 +57,12 @@
 //                }
 //            })
 //
-////    ui.setNavigationBarSafeArea(ui.viewDataBinding.root, activity)
-//        // TODO for bottom navigation [
-////    setupBottomNavigationSpace(true)
-//        // TODO for bottom navigation ]
 //        activity?.window?.let {
 //            windowSoftInputMode(it)
 //        }
 //
 //        return ui.viewDataBinding.root
 //    }
-//
-//    // TODO for bottom navigation [
-////  private fun setupBottomNavigationSpace(isSet: Boolean) {
-////    if (needSpaceBottomNavigation) {
-////      if (isSet) {
-////        ui.viewDataBinding.root.viewTreeObserver.addOnGlobalLayoutListener(onGlobalLayoutListener)
-////      } else {
-////        ui.viewDataBinding.root.viewTreeObserver.removeOnGlobalLayoutListener(onGlobalLayoutListener)
-////      }
-////    }
-////  }
-//    // TODO for bottom navigation ]
 //
 //    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 //        super.onViewCreated(view, savedInstanceState)
@@ -122,15 +71,9 @@
 //        addObservers()
 //        addLoadingObservers()
 //        viewModel.onBackPressed.observeEvent(::onBackPressed)
-//        // TODO for bottom navigation [
-////    addBottomMenuObservers()
-//        // TODO for bottom navigation ]
 //    }
 //
 //    override fun onDestroyView() {
-//        // TODO for bottom navigation [
-////    setupBottomNavigationSpace(false)
-//        // TODO for bottom navigation ]
 //        super.onDestroyView()
 //    }
 //
@@ -140,103 +83,6 @@
 //            findNavController().navigate(this)
 //        }
 //    }
-//
-//    // TODO for bottom navigation [
-////  private fun addBottomMenuObservers() {
-////    viewModel.onBottomMenuHome.observeEvent(this::onBottomMenuHome)
-////    viewModel.onBottomMenuRecipe.observeEvent(this::onBottomMenuRecipe)
-////    viewModel.onBottomMenuShopping.observeEvent(this::onBottomMenuShopping)
-////    viewModel.onBottomMenuSaladBar.observeEvent(this::onBottomMenuSaladBar)
-////    viewModel.onBottomMenuMyPage.observeEvent(this::onBottomMenuMyPage)
-////  }
-////
-////  private fun onBottomMenuTo(to: Int) {
-////    val navDestination = findNavController().currentDestination
-////    if (navDestination?.id == to) {
-////      onRefresh()
-////      return
-////    }
-////    if (bottomMenus.indexOf(to) == bottomMenuButtons.indexOf(viewModel.selectedBottomMenuId.value)) {
-////      d(bottomMenus.indexOf(to), bottomMenuButtons.indexOf(viewModel.selectedBottomMenuId.value))
-////      onRefresh()
-////      return
-////    }
-////
-////    val bottomMenu = ui.viewDataBinding.root.findViewById<View>(R.id.clBottomMenu)
-//////    val bottomMenuHome = ui.viewDataBinding.root.findViewById<View>(R.id.tvBtnBottomMenuHome)
-////    val extra = bottomMenu?.let {
-////      FragmentNavigatorExtras(
-////        bottomMenu to bottomMenu.transitionName
-//////      bottomMenuHome to bottomMenuHome.transitionName
-////      )
-////    }
-////    navOptions {
-////      val currentId = navDestination?.id ?: return@navOptions
-//////      if (currentId != R.id.MainFragment) {
-////      navDestination.let {
-////        popUpTo = R.id.MainFragment
-////      }
-//////      }
-////      launchSingleTop = true
-//////      anim {
-//////        if (bottomMenus.indexOf(to) < bottomMenus.indexOf(currentId)) {
-//////          enter = R.anim.pop_enter_from_left_full
-//////          exit = R.anim.exit_to_right_full
-//////          popEnter = R.anim.pop_enter_from_left_full
-//////          popExit = R.anim.pop_exit_to_right
-//////        } else {
-//////          enter = R.anim.pop_enter_from_right_full
-//////          exit = R.anim.exit_to_left_full
-//////          popEnter = R.anim.pop_enter_from_left_full
-//////          popExit = R.anim.pop_exit_to_right
-//////        }
-//////      }
-////    }.let {
-////      findNavController().navigate(
-////        to, bundleOf(
-////        "userVo" to viewModel.userVo.toParcel()
-////      ), it, extra
-////      )
-////    }
-////  }
-////
-////  protected open fun onBottomMenuHome() {
-////    onBottomMenuTo(R.id.MainFragment)
-//////    val navDestination = findNavController().currentDestination
-//////    if (navDestination?.id == R.id.MainFragment) {
-//////      onRefresh()
-//////      return
-//////    }
-//////    findNavController().navigateUp()
-//////    navOptions {
-//////      navDestination?.let {
-//////        popUpTo = R.id.MainFragment
-//////      }
-//////      launchSingleTop = true
-//////    }.let {
-//////      findNavController().navigate(R.id.MainFragment, null, it)
-//////    }
-////  }
-////
-////  protected open fun onBottomMenuRecipe() {
-////    onBottomMenuTo(R.id.RecipeFragment)
-////  }
-////
-////  protected open fun onBottomMenuShopping() {
-////    onBottomMenuTo(R.id.ShoppingFragment)
-////  }
-////
-////  protected open fun onBottomMenuSaladBar() {
-////    onBottomMenuTo(R.id.SaladBarFragment)
-////  }
-////
-////  protected open fun onBottomMenuMyPage() {
-////    onBottomMenuTo(R.id.MyPageFragment)
-////  }
-////
-////  protected open fun onRefresh() {
-////  }
-//    // TODO for bottom navigation ]
 //
 //    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
 //        R.id.home -> {
@@ -352,8 +198,6 @@
 //        w.attributes.layoutInDisplayCutoutMode = FLAG_DISPLAY_CUTOUT_SHORT_EDGES
 //    }
 //
-//    private fun provideUdpServer(): UdpServer = (requireContext().applicationContext as App).provideUdpServer()
-//
 //    @get:LayoutRes
 //    protected abstract val layoutRes: Int
 //    protected abstract val navId: Int?
@@ -424,11 +268,3 @@
 //fun <T> Fragment.setNavigationResult(result: T, key: String = "result") {
 //    findNavController().previousBackStackEntry?.savedStateHandle?.set(key, result)
 //}
-//
-//
-//// TODO for bottom navigation [
-////@BindingAdapter("selectedBottomMenu")
-////fun setSelectedBottomMenu(view: CheckedTextView, selectedBottomMenuId: Int?) {
-////  view.isChecked = view.id == selectedBottomMenuId
-////}
-//// TODO for bottom navigation ]
